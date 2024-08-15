@@ -18,4 +18,14 @@ async function genNewShortenUrl(req, res){
     return res.json({ id: shortId });
 }
 
-module.exports = genNewShortenUrl;
+async function getAnalytics(req, res){
+    const shortId = req.params.shortId;
+    const result = await URL.findOne({ shortId });
+
+    return res.json({
+        totalClicks: result.visitHistory.length,
+        analytics: result.visitHistory,
+    });
+}
+
+module.exports = {genNewShortenUrl, getAnalytics};
