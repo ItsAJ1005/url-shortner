@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../public/home.css">
+    <title>Home page</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            padding: 20px;
+            font-size: 18px; 
+        }
+        
+        * {
+            font-family: Arial, Helvetica, sans-serif;
+            background:  rgb(205, 253, 205);
+            color: rgb(2, 8, 4);
+        }
+
+        button {
+            border-radius: 10%;
+            padding: 10px;
+        }
+        input {
+            color: rgb(2, 8, 4);
+            padding: 10px; 
+            margin: 0 5px;
+        }
+        
+    </style>
+</head>
+<body>
+
+    <h1>URL - Shortener</h1>
+
+    <div class="res">
+        <% if (locals.id) { %>
+            <p>URL generated: <a href="http://localhost:3000/<%= id %>">http://localhost:3000/<%= id %></a></p>
+        <% } %>
+    </div>
+
+    <form method="POST" action="/url">
+        <label>Enter your original URL</label>
+        <input type="text" name="url" placeholder="https://example.com"/>
+        <button type="submit">Generate</button>
+    </form>
+
+    <button class="js-start-over">Start Over</button>
+
+    <div class="js-res"></div>
+
+    <script>
+        const again = document.querySelector('.js-start-over');
+        again.addEventListener('click', () => {
+            window.location.href = '/';
+        });
+    </script>
+
+</body>
+</html>
